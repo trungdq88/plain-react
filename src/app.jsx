@@ -3,13 +3,9 @@
  */
 
 import './index.html';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import './containers/App.jsx';
+import configureStore from './store/configureStore'
 
-export default class App extends React.Component {
-  render() {
-    return <div>Hello</div>
-  }
-}
+const store = configureStore()
 
 ReactDOM.render(<App />, document.getElementById('app'));
