@@ -2,14 +2,19 @@
  * Created by dinhquangtrung on 11/1/15.
  */
 
-import './index.html';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Counter from '../components/Counter';
+import * as CounterActions from '../actions/counter';
 
-export default class App extends React.Component {
-  render() {
-    return <div>Hello</div>
-  }
+function mapStateToProps(state) {
+  return {
+    counter: state.counter,
+  };
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(CounterActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
