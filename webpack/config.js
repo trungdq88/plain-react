@@ -9,7 +9,7 @@ var plugins = require('./plugins');
 var DEBUG = process.env.NODE_ENV === 'development';
 var TEST = process.env.NODE_ENV === 'test';
 
-var jsBundle = path.join(util.format('[name].%s.jsx', pkg.version));
+var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 var entry = {
   app: ['./app.jsx'],
@@ -47,7 +47,7 @@ var config = {
   ],
   plugins: plugins,
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx']
+    extensions: ['', '.jsx', '.json', '.js']
   },
   devServer: {
     contentBase: path.resolve(pkg.config.buildDir),
