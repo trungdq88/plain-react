@@ -1,5 +1,10 @@
 {
   "extends": "airbnb",
+  "globals": {
+    "describe": true,
+    "it": true,
+    "sinon": true
+  },
   "rules": {
     "react/prop-types": 0,
     "react/no-multi-comp": 0,

@@ -1,5 +1,5 @@
 # About
-My favorite boilerplate for React/Redux to create static web app.
+My favorite boilerplate to create static web app with React.
 
 # Initial dev setup
 Make sure you have NodeJS v4.1.1 or above. 
@@ -19,6 +19,14 @@ npm run production
 ```
 
 Production code placed at `build`
+
+# Test
+
+```bash
+npm test
+```
+
+Coverage report placed in `./coverage/` directory
 
 # Other commands
 - `npm run staging` build for `staging` environment. 

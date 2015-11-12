@@ -13,6 +13,7 @@ var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 var entry = {
   app: ['./app.jsx'],
+  login: ['./login.jsx'],
 };
 
 if (DEBUG) {

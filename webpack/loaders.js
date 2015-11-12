@@ -6,7 +6,7 @@ var BUILD_NUMBER = process.env.BUILD_NUMBER || '(non-jenkins-build)';
 
 var fileLoader = 'file-loader?name=assets/[name].[ext]';
 var cssLoader;
-var jsxLoader = 'babel-loader?optional[]=runtime&stage=0&plugins=rewire';
+var jsxLoader;
 var htmlLoader = [
   'file-loader?name=[path][name].[ext]',
   'template-html-loader?' + [
@@ -19,13 +19,19 @@ var htmlLoader = [
   ].join('&')
 ].join('!');
 
-if (ENV === 'development') {
+if (ENV === 'development' || ENV === 'test') {
+  jsxLoader = [];
+  if (ENV !== 'test') {
+    jsxLoader.push('react-hot');
+  }
+  jsxLoader.push('babel');
   cssLoader = [
     'style-loader',
     'css-loader?sourceMap&localIdentName=[name]__[local]___[hash:base64:5]',
     'postcss-loader'
   ].join('!');
 } else {
+  jsxLoader = ['babel'];
   cssLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader?localIdentName=[hash:base64:5]',
     'postcss-loader'
@@ -36,7 +42,7 @@ var loaders = [
   {
     test: /\.jsx?$/,
     exclude: /(node_modules|bower_components)/,
-    loader: jsxLoader /* 'babel' */
+    loaders: jsxLoader /* 'babel' */
   },
   { test: /\.css$/, loader: cssLoader /* "style-loader!css-loader" */ },
   { test: /\.png$/, loader: "url-loader?limit=100000" },
