@@ -51,9 +51,14 @@ var loaders = [
     loader: htmlLoader
   },
   {
-    test: /(\.jpe?g|\.gif|\.png|\.ico|\.eot|\.svg|\.woff|\.woff2|\.ttf)(\?v=\d\.\d\.\d)?/,
+    test: /(\.jpe?g|\.gif|\.png|\.ico)/,
     loader: fileLoader
   },
+  { test: /\.eot(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
+  { test: /\.woff2(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },
+  { test: /\.woff(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-woff' },
+  { test: /\.ttf(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-ttf' },
+  { test: /\.svg(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-svg' },
   {
     test: /\.less$/,
     loader: "style!css!less"

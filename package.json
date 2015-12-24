@@ -4,8 +4,7 @@
   "description": "Boilerplate for Admin UI application built on React and Flux",
   "main": "src/app.jsx",
   "scripts": {
-    "staging": "NODE_ENV=staging npm run webpack",
-    "production": "NODE_ENV=production npm run webpack",
+    "build": "NODE_ENV=production npm run webpack",
     "clean": "rimraf $npm_package_config_buildDir && mkdir $npm_package_config_buildDir",
     "env": "env",
     "lint": "eslint --ext .jsx ./src && echo No linting errors.",
@@ -19,20 +18,20 @@
     "webpack": "webpack --colors --progress --config ./webpack/config"
   },
   "repository": {
-    "type": "git+git@github.com:siliconstraits/react-admin.git",
-    "url": "https://github.com/siliconstraits/react-admin"
+    "type": "git+git@github.com:trungdq88/plain-react.git",
+    "url": "https://github.com/trungdq88/plain-react"
   },
-  "author": "SSS",
+  "author": "Trung Dinh Quang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/siliconstraits/react-admin/issues"
+    "url": "https://github.com/trungdq88/plain-react/issues"
   },
   "config": {
     "buildDir": "./build",
     "devHost": "localhost",
     "devPort": 8763
   },
-  "homepage": "https://github.com/siliconstraits/react-admin",
+  "homepage": "https://github.com/trungdq88/plain-react",
   "babel": {
     "presets": [
       "es2015",
@@ -82,17 +81,17 @@
     "template-html-loader": "0.0.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0"
-  },
-  "dependencies": {
     "autoprefixer": "^6.0.3",
     "babel-polyfill": "^6.1.4",
-    "classnames": "^2.1.5",
     "eslint": "^1.6.0",
     "eslint-config-airbnb": "^1.0.0",
     "eslint-plugin-react": "^3.5.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "postcss-loader": "^0.8.0",
+    "webpack-dev-server": "^1.12.0"
+  },
+  "dependencies": {
+    "classnames": "^2.1.5",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   }
