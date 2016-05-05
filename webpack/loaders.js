@@ -4,19 +4,20 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ENV = process.env.NODE_ENV || 'production';
 const BUILD_NUMBER = process.env.BUILD_NUMBER || '(non-jenkins-build)';
 
+const urlLoaderPrefix = 'url-loader?name=assets/[name].[ext]&limit=100000&mimetype=application/';
 const fileLoader = 'file-loader?name=assets/[name].[ext]';
 let cssLoader;
 let jsxLoader;
 const htmlLoader = [
   'file-loader?name=[path][name].[ext]',
-  'template-html-loader?' + [
+  `template-html-loader?${[
     'raw=true',
     'engine=lodash',
-    'version=' + pkg.version,
-    'title=' + pkg.name,
-    'environment=' + ENV,
-    'build=' + BUILD_NUMBER,
-  ].join('&'),
+    `version=${pkg.version}`,
+    `title=${pkg.name}`,
+    `environment=${ENV}`,
+    `build=${BUILD_NUMBER}`,
+  ].join('&')}`,
 ].join('!');
 
 if (ENV === 'development' || ENV === 'test') {
@@ -54,11 +55,11 @@ const loaders = [
     test: /(\.jpe?g|\.gif|\.png|\.ico)/,
     loader: fileLoader,
   },
-  { test: /\.eot(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
-  { test: /\.woff2(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },
-  { test: /\.woff(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-woff' },
-  { test: /\.ttf(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-ttf' },
-  { test: /\.svg(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-svg' },
+  { test: /\.eot(\?\S*)?/, loader: `${urlLoaderPrefix}vnd.ms-fontobject` },
+  { test: /\.woff2(\?\S*)?/, loader: `${urlLoaderPrefix}font-woff2` },
+  { test: /\.woff(\?\S*)?/, loader: `${urlLoaderPrefix}font-woff` },
+  { test: /\.ttf(\?\S*)?/, loader: `${urlLoaderPrefix}font-ttf` },
+  { test: /\.svg(\?\S*)?/, loader: `${urlLoaderPrefix}font-svg` },
   {
     test: /\.less$/,
     loader: 'style!css!less',
