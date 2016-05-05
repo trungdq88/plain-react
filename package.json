@@ -9,7 +9,6 @@
     "env": "env",
     "lint": "eslint --ext .jsx ./src && echo No linting errors.",
     "prebuild": "npm run clean",
-    "prestart": "bower install && npm install",
     "pretest": "bower install && npm install && npm run lint",
     "pretest-travis": "npm install && npm run lint",
     "start": "NODE_ENV=development node dev-server ./webpack/config",
