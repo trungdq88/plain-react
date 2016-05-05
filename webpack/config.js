@@ -12,7 +12,7 @@ const TEST = process.env.NODE_ENV === 'test';
 const jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 const entry = {
-  app: ['./app.jsx'],
+  app: ['babel-polyfill', './app.jsx'],
 };
 
 if (DEBUG) {
