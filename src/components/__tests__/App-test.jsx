@@ -9,8 +9,11 @@ import { expect } from 'chai';
 
 describe('App', () => {
   it('Should have the bootstrap button', () => {
+    // We need an extra <div> to wrap the stateless component
     const app = TestUtils.renderIntoDocument(
-      <App />
+      <div>
+        <App />
+      </div>
     );
     const appElement = ReactDOM.findDOMNode(app);
     expect(appElement.querySelectorAll('#the-bootstrap-btn').length).to.equal(1);

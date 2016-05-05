@@ -1,4 +1,5 @@
-module.exports = function(config) {
+const webpackConfig = require('./webpack/config.test');
+module.exports = config => {
   config.set({
     basePath: '',
     frameworks: ['source-map-support', 'mocha', 'sinon'],
@@ -16,10 +17,23 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: [/* 'Chrome', */'PhantomJS'],
     singleRun: false,
-    webpack: require('./webpack/config.test'),
+    webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true,
     },
+    plugins: [
+      'karma-chai',
+      'karma-chrome-launcher',
+      'karma-coverage',
+      'karma-coveralls',
+      'karma-mocha',
+      'karma-mocha-reporter',
+      'karma-phantomjs-launcher',
+      'karma-sinon',
+      'karma-source-map-support',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ],
     coverageReporter: {
       type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
       dir: 'coverage/',
