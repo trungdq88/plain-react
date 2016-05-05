@@ -1,19 +1,18 @@
-var path = require('path');
-var util = require('util');
-var autoprefixer = require('autoprefixer');
-var pkg = require('../package.json');
+const path = require('path');
+const util = require('util');
+const autoprefixer = require('autoprefixer');
+const pkg = require('../package.json');
 
-var loaders = require('./loaders');
-var plugins = require('./plugins');
+const loaders = require('./loaders');
+const plugins = require('./plugins');
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
 
-var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
+const jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
-var entry = {
+const entry = {
   app: ['./app.jsx'],
-  login: ['./login.jsx'],
 };
 
 if (DEBUG) {
@@ -27,37 +26,37 @@ if (DEBUG) {
   entry.app.push('webpack/hot/dev-server');
 }
 
-var config = {
+const config = {
   context: path.join(__dirname, '../src'),
   cache: DEBUG,
   debug: DEBUG,
   target: 'web',
   devtool: DEBUG || TEST ? 'inline-source-map' : false,
-  entry: entry,
+  entry,
   output: {
     path: path.resolve(pkg.config.buildDir),
     publicPath: '/',
     filename: jsBundle,
-    pathinfo: false
+    pathinfo: false,
   },
   module: {
-    loaders: loaders
+    loaders,
   },
   postcss: [
-    autoprefixer
+    autoprefixer,
   ],
-  plugins: plugins,
+  plugins,
   resolve: {
-    extensions: ['', '.jsx', '.json', '.js']
+    extensions: ['', '.jsx', '.json', '.js'],
   },
   devServer: {
     contentBase: path.resolve(pkg.config.buildDir),
-    headers: { "Access-Control-Allow-Origin": "*" },
+    headers: { 'Access-Control-Allow-Origin': '*' },
     hot: true,
     noInfo: false,
     inline: true,
-    stats: { colors: true }
-  }
+    stats: { colors: true },
+  },
 };
 
 module.exports = config;

@@ -1,13 +1,13 @@
-var pkg = require('../package.json');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const pkg = require('../package.json');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var ENV = process.env.NODE_ENV || 'production';
-var BUILD_NUMBER = process.env.BUILD_NUMBER || '(non-jenkins-build)';
+const ENV = process.env.NODE_ENV || 'production';
+const BUILD_NUMBER = process.env.BUILD_NUMBER || '(non-jenkins-build)';
 
-var fileLoader = 'file-loader?name=assets/[name].[ext]';
-var cssLoader;
-var jsxLoader;
-var htmlLoader = [
+const fileLoader = 'file-loader?name=assets/[name].[ext]';
+let cssLoader;
+let jsxLoader;
+const htmlLoader = [
   'file-loader?name=[path][name].[ext]',
   'template-html-loader?' + [
     'raw=true',
@@ -16,7 +16,7 @@ var htmlLoader = [
     'title=' + pkg.name,
     'environment=' + ENV,
     'build=' + BUILD_NUMBER,
-  ].join('&')
+  ].join('&'),
 ].join('!');
 
 if (ENV === 'development' || ENV === 'test') {
@@ -28,31 +28,31 @@ if (ENV === 'development' || ENV === 'test') {
   cssLoader = [
     'style-loader',
     'css-loader?sourceMap&localIdentName=[name]__[local]___[hash:base64:5]',
-    'postcss-loader'
+    'postcss-loader',
   ].join('!');
 } else {
   jsxLoader = ['babel'];
   cssLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader?localIdentName=[hash:base64:5]',
-    'postcss-loader'
+    'postcss-loader',
   ].join('!'));
 }
 
-var loaders = [
+const loaders = [
   {
     test: /\.jsx?$/,
     exclude: /(node_modules|bower_components)/,
-    loaders: jsxLoader /* 'babel' */
+    loaders: jsxLoader, /* 'babel' */
   },
   { test: /\.css$/, loader: cssLoader /* "style-loader!css-loader" */ },
-  { test: /\.png$/, loader: "url-loader?limit=100000" },
+  { test: /\.png$/, loader: 'url-loader?limit=100000' },
   {
     test: /\.html$/,
-    loader: htmlLoader
+    loader: htmlLoader,
   },
   {
     test: /(\.jpe?g|\.gif|\.png|\.ico)/,
-    loader: fileLoader
+    loader: fileLoader,
   },
   { test: /\.eot(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
   { test: /\.woff2(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },
@@ -61,7 +61,7 @@ var loaders = [
   { test: /\.svg(\?\S*)?/, loader: 'url-loader?limit=100000&mimetype=application/font-svg' },
   {
     test: /\.less$/,
-    loader: "style!css!less"
-  }
+    loader: 'style!css!less',
+  },
 ];
 module.exports = loaders;
