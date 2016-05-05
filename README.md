@@ -8,7 +8,7 @@
 My favorite boilerplate to create static web app with React.
 
 # Initial dev setup
-Make sure you have NodeJS v4 or above. 
+Make sure you have NodeJS v6 or above. 
 
 ```bash  
 npm install 
