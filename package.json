@@ -1,5 +1,5 @@
 {
-  "name": "react-admin",
+  "name": "plain-react",
   "version": "0.0.0",
   "description": "Boilerplate for Admin UI application built on React and Flux",
   "main": "src/app.jsx",
